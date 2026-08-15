@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>군대 전역일 계산기</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            background: #f5f5f7;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Pretendard",
+                "Noto Sans KR",
+                sans-serif;
+            color: #222;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            margin: 0 0 30px;
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .date-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .date-box {
+            background: #f7f7f8;
+            border-radius: 16px;
+            padding: 18px;
+        }
+
+        .date-box label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #777;
+            font-weight: 600;
+        }
+
+        .date-box input {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 17px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .main-percent {
+            text-align: center;
+            margin: 20px 0 30px;
+        }
+
+        .percent {
+            font-size: 48px;
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
+
+        .percent-label {
+            margin-top: 6px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .progress-wrapper {
+            margin: 30px 0;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #777;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 22px;
+            background: #e9e9ec;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            width: 0%;
+            border-radius: inherit;
+            background: linear-gradient(
+                90deg,
+                #111,
+                #555
+            );
+            transition: width 0.5s ease;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .stat {
+            padding: 20px 12px;
+            text-align: center;
+            background: #f7f7f8;
+            border-radius: 16px;
+        }
+
+        .stat-title {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .detail {
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid #eee;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .detail-row span:first-child {
+            color: #888;
+        }
+
+        .detail-row span:last-child {
+            font-weight: 700;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 12px;
+            }
+
+            .card {
+                padding: 24px 18px;
+                border-radius: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .date-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .percent {
+                font-size: 38px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>🎖️ 군대 전역일 계산기</h1>
+
+        <div class="date-grid">
+
+            <div class="date-box">
+                <label for="startDate">입대일</label>
+                <input
+                    type="date"
+                    id="startDate"
+                    value="2026-06-23"
+                >
+            </div>
+
+            <div class="date-box">
+                <label for="endDate">전역일</label>
+                <input
+                    type="date"
+                    id="endDate"
+                    value="2027-12-22"
+                >
+            </div>
+
+        </div>
+
+        <div class="main-percent">
+            <div class="percent" id="percent">
+                0.0000000000%
+            </div>
+
+            <div class="percent-label">
+                현재 복무 진행률
+            </div>
+        </div>
+
+
+        <div class="progress-wrapper">
+
+            <div class="progress-info">
+                <span id="elapsedText">0일 복무</span>
+                <span id="remainingText">0일 남음</span>
+            </div>
+
+            <div class="progress-bar">
+                <div
+                    class="progress"
+                    id="progress"
+                ></div>
+            </div>
+
+        </div>
+
+
+        <div class="stats">
+
+            <div class="stat">
+                <div class="stat-title">
+                    총 복무일
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="totalDays"
+                >
+                    0일
+                </div>
+            </div>
+
+
+            <div class="stat">
+                <div class="stat-title">
+                    복무한 날
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="elapsedDays"
+                >
+                    0일
+                </div>
+            </div>
+
+
+            <div class="stat">
+                <div class="stat-title">
+                    남은 날
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="remainingDays"
+                >
+                    0일
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="detail">
+
+            <div class="detail-row">
+                <span>오늘</span>
+                <span id="today"></span>
+            </div>
+
+            <div class="detail-row">
+                <span>입대일</span>
+                <span id="startDisplay"></span>
+            </div>
+
+            <div class="detail-row">
+                <span>전역일</span>
+                <span id="endDisplay"></span>
+            </div>
+
+            <div class="detail-row">
+                <span>복무율</span>
+                <span id="detailPercent"></span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    const startDateInput =
+        document.getElementById("startDate");
+
+    const endDateInput =
+        document.getElementById("endDate");
+
+    const percentElement =
+        document.getElementById("percent");
+
+    const progressElement =
+        document.getElementById("progress");
+
+    const totalDaysElement =
+        document.getElementById("totalDays");
+
+    const elapsedDaysElement =
+        document.getElementById("elapsedDays");
+
+    const remainingDaysElement =
+        document.getElementById("remainingDays");
+
+    const elapsedText =
+        document.getElementById("elapsedText");
+
+    const remainingText =
+        document.getElementById("remainingText");
+
+    const todayElement =
+        document.getElementById("today");
+
+    const startDisplay =
+        document.getElementById("startDisplay");
+
+    const endDisplay =
+        document.getElementById("endDisplay");
+
+    const detailPercent =
+        document.getElementById("detailPercent");
+
+
+    function formatDate(date) {
+
+        return date.toLocaleDateString(
+            "ko-KR",
+            {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit"
+            }
+        );
+
+    }
+
+
+    function calculateService() {
+
+        const start = new Date(
+            startDateInput.value + "T00:00:00"
+        );
+
+        const end = new Date(
+            endDateInput.value + "T00:00:00"
+        );
+
+        const now = new Date();
+
+        // 오늘 날짜만 사용
+        const today = new Date(
+            now.getFullYear(),
+            now.getMonth(),
+            now.getDate()
+        );
+
+
+        // 잘못된 날짜 방지
+        if (end <= start) {
+
+            alert("전역일은 입대일보다 늦어야 합니다.");
+
+            return;
+
+        }
+
+
+        /*
+         * 전체 복무기간
+         */
+        const totalMilliseconds =
+            end.getTime() - start.getTime();
+
+        const totalDays =
+            totalMilliseconds / 86400000;
+
+
+        /*
+         * 현재까지 복무한 기간
+         */
+        let elapsedMilliseconds =
+            today.getTime() - start.getTime();
+
+
+        /*
+         * 입대 전이면 0
+         */
+        if (elapsedMilliseconds < 0) {
+            elapsedMilliseconds = 0;
+        }
+
+
+        /*
+         * 전역일 이후라면 전체 기간으로 고정
+         */
+        if (elapsedMilliseconds > totalMilliseconds) {
+            elapsedMilliseconds = totalMilliseconds;
+        }
+
+
+        const elapsedDays =
+            elapsedMilliseconds / 86400000;
+
+
+        const remainingDays =
+            totalDays - elapsedDays;
+
+
+        /*
+         * 복무율
+         */
+        let percent =
+            (elapsedDays / totalDays) * 100;
+
+
+        /*
+         * 0 ~ 100 사이로 제한
+         */
+        percent =
+            Math.max(0, Math.min(100, percent));
+
+
+        /*
+         * 화면 출력
+         *
+         * toFixed(10)
+         * → 소수점 10자리까지 표시
+         */
+        const percentText =
+            percent.toFixed(10) + "%";
+
+
+        percentElement.textContent =
+            percentText;
+
+        detailPercent.textContent =
+            percentText;
+
+
+        /*
+         * 가로 그래프
+         */
+        progressElement.style.width =
+            percent + "%";
+
+
+        /*
+         * 일수 출력
+         */
+        totalDaysElement.textContent =
+            Math.floor(totalDays) + "일";
+
+        elapsedDaysElement.textContent =
+            Math.floor(elapsedDays) + "일";
+
+        remainingDaysElement.textContent =
+            Math.ceil(remainingDays) + "일";
+
+
+        elapsedText.textContent =
+            Math.floor(elapsedDays) + "일 복무";
+
+        remainingText.textContent =
+            Math.ceil(remainingDays) + "일 남음";
+
+
+        /*
+         * 날짜 출력
+         */
+        todayElement.textContent =
+            formatDate(today);
+
+        startDisplay.textContent =
+            formatDate(start);
+
+        endDisplay.textContent =
+            formatDate(end);
+
+    }
+
+
+    /*
+     * 날짜 변경 시 즉시 재계산
+     */
+    startDateInput.addEventListener(
+        "change",
+        calculateService
+    );
+
+    endDateInput.addEventListener(
+        "change",
+        calculateService
+    );
+
+
+    /*
+     * 최초 실행
+     */
+    calculateService();
+
+
+    /*
+     * 1분마다 갱신
+     */
+    setInterval(
+        calculateService,
+        60000
+    );
+
+</script>
+
+</body>
+</html>
