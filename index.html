@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>사지방 군돌이</title>
 
+
     <style>
+
         * {
             box-sizing: border-box;
         }
 
+
         body {
+
             margin: 0;
+
             padding: 40px 20px;
 
             background: #f5f5f7;
@@ -25,15 +36,23 @@
                 sans-serif;
 
             color: #222;
+
         }
+
 
         .container {
+
             width: 100%;
+
             max-width: 720px;
+
             margin: 0 auto;
+
         }
 
+
         .card {
+
             background: #fff;
 
             border-radius: 24px;
@@ -41,35 +60,54 @@
             padding: 32px;
 
             box-shadow:
-                0 10px 40px rgba(0, 0, 0, 0.08);
+                0 10px 40px
+                rgba(0, 0, 0, 0.08);
+
         }
 
+
         h1 {
+
             margin: 0 0 30px;
 
             font-size: 28px;
+
             font-weight: 800;
+
         }
 
+
+        /* =========================
+           날짜
+        ========================= */
+
         .date-grid {
+
             display: grid;
 
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns:
+                1fr 1fr;
 
             gap: 16px;
 
             margin-bottom: 35px;
+
         }
 
+
         .date-box {
+
             padding: 18px;
 
             background: #f7f7f8;
 
             border-radius: 16px;
+
         }
 
+
         .date-box label {
+
             display: block;
 
             margin-bottom: 10px;
@@ -77,73 +115,83 @@
             color: #777;
 
             font-size: 14px;
+
             font-weight: 600;
+
         }
 
+
+        /*
+         * 입대일 / 전역일
+         * 수정 불가능
+         */
+
         .date-box input {
+
             width: 100%;
 
             border: none;
+
             outline: none;
 
             background: transparent;
 
             font-size: 17px;
+
             font-weight: 700;
+
             color: #222;
+
+            pointer-events: none;
+
+            user-select: none;
+
         }
 
+
         /* =========================
-           퍼센트
+           복무율
         ========================= */
 
         .main-percent {
+
             text-align: center;
 
             margin: 25px 0 35px;
+
         }
 
+
         .percent {
-            font-size: clamp(32px, 7vw, 52px);
+
+            font-size:
+                clamp(30px, 7vw, 52px);
 
             font-weight: 900;
 
             letter-spacing: -2px;
 
-            font-variant-numeric: tabular-nums;
+            font-variant-numeric:
+                tabular-nums;
 
             white-space: nowrap;
+
         }
 
-        .percent-label {
-            margin-top: 8px;
-
-            color: #888;
-
-            font-size: 14px;
-        }
 
         /* =========================
            그래프
         ========================= */
 
         .progress-wrapper {
+
             margin: 30px 0;
+
         }
 
-        .progress-info {
-            display: flex;
-
-            justify-content: space-between;
-
-            margin-bottom: 10px;
-
-            font-size: 13px;
-
-            color: #777;
-        }
 
         .progress-bar {
+
             width: 100%;
 
             height: 22px;
@@ -153,9 +201,12 @@
             border-radius: 999px;
 
             overflow: hidden;
+
         }
 
+
         .progress {
+
             height: 100%;
 
             width: 0%;
@@ -169,17 +220,15 @@
                     #555
                 );
 
-            /*
-             * 너무 빠르게 움직이지 않도록
-             * CSS transition은 사용하지 않음
-             */
         }
+
 
         /* =========================
            통계
         ========================= */
 
         .stats {
+
             display: grid;
 
             grid-template-columns:
@@ -188,9 +237,12 @@
             gap: 12px;
 
             margin-top: 30px;
+
         }
 
+
         .stat {
+
             padding: 20px 12px;
 
             text-align: center;
@@ -198,37 +250,50 @@
             background: #f7f7f8;
 
             border-radius: 16px;
+
         }
 
+
         .stat-title {
+
             margin-bottom: 8px;
 
             font-size: 13px;
 
             color: #888;
+
         }
 
+
         .stat-value {
+
             font-size: 22px;
 
             font-weight: 800;
 
-            font-variant-numeric: tabular-nums;
+            font-variant-numeric:
+                tabular-nums;
+
         }
+
 
         /* =========================
            상세 정보
         ========================= */
 
         .detail {
+
             margin-top: 28px;
 
             padding-top: 24px;
 
             border-top: 1px solid #eee;
+
         }
 
+
         .detail-row {
+
             display: flex;
 
             justify-content: space-between;
@@ -236,17 +301,26 @@
             padding: 9px 0;
 
             font-size: 14px;
+
         }
+
 
         .detail-row span:first-child {
+
             color: #888;
+
         }
+
 
         .detail-row span:last-child {
+
             font-weight: 700;
 
-            font-variant-numeric: tabular-nums;
+            font-variant-numeric:
+                tabular-nums;
+
         }
+
 
         /* =========================
            모바일
@@ -255,51 +329,78 @@
         @media (max-width: 600px) {
 
             body {
+
                 padding: 20px 12px;
+
             }
 
+
             .card {
+
                 padding: 24px 18px;
 
                 border-radius: 20px;
+
             }
+
 
             h1 {
+
                 font-size: 24px;
+
             }
+
 
             .date-grid {
+
                 grid-template-columns: 1fr;
+
             }
+
 
             .stats {
+
                 grid-template-columns: 1fr;
+
             }
 
+
             .percent {
+
                 letter-spacing: -1.5px;
+
             }
+
         }
+
     </style>
+
 </head>
 
 
 <body>
 
+
 <div class="container">
 
     <div class="card">
 
-        <h1>군돌이 짭 (feat. Chat GPT)</h1>
+
+        <h1>
+            군돌이 짭 (feat. Chat GPT)
+        </h1>
 
 
-        <!-- 날짜 입력 -->
+        <!-- =========================
+             입대일 / 전역일
+        ========================= -->
 
         <div class="date-grid">
 
+
             <div class="date-box">
 
-                <label for="startDate">
+                <label>
                     입대일
                 </label>
 
@@ -307,6 +408,8 @@
                     type="date"
                     id="startDate"
                     value="2026-06-23"
+                    readonly
+                    tabindex="-1"
                 >
 
             </div>
@@ -314,7 +417,7 @@
 
             <div class="date-box">
 
-                <label for="endDate">
+                <label>
                     전역일
                 </label>
 
@@ -322,14 +425,19 @@
                     type="date"
                     id="endDate"
                     value="2027-12-22"
+                    readonly
+                    tabindex="-1"
                 >
 
             </div>
 
+
         </div>
 
 
-        <!-- 현재 복무율 -->
+        <!-- =========================
+             현재 복무율
+        ========================= -->
 
         <div class="main-percent">
 
@@ -339,10 +447,13 @@
             >
                 0.00000000%
             </div>
+
         </div>
 
 
-        <!-- 가로 그래프 -->
+        <!-- =========================
+             가로 그래프
+        ========================= -->
 
         <div class="progress-wrapper">
 
@@ -358,9 +469,12 @@
         </div>
 
 
-        <!-- 통계 -->
+        <!-- =========================
+             통계
+        ========================= -->
 
         <div class="stats">
+
 
             <div class="stat">
 
@@ -409,12 +523,16 @@
 
             </div>
 
+
         </div>
 
 
-        <!-- 상세 정보 -->
+        <!-- =========================
+             상세 정보
+        ========================= -->
 
         <div class="detail">
+
 
             <div class="detail-row">
 
@@ -467,7 +585,9 @@
 
             </div>
 
+
         </div>
+
 
     </div>
 
@@ -476,353 +596,394 @@
 
 <script>
 
-    /* ================================
-       DOM
-    ================================= */
 
-    const startDateInput =
-        document.getElementById("startDate");
-
-    const endDateInput =
-        document.getElementById("endDate");
-
-    const percentElement =
-        document.getElementById("percent");
-
-    const detailPercent =
-        document.getElementById("detailPercent");
-
-    const progressElement =
-        document.getElementById("progress");
-
-    const totalDaysElement =
-        document.getElementById("totalDays");
-
-    const elapsedDaysElement =
-        document.getElementById("elapsedDays");
-
-    const remainingDaysElement =
-        document.getElementById("remainingDays");
-
-    const elapsedText =
-        document.getElementById("elapsedText");
-
-    const remainingText =
-        document.getElementById("remainingText");
-
-    const currentTimeElement =
-        document.getElementById("currentTime");
-
-    const startDisplay =
-        document.getElementById("startDisplay");
-
-    const endDisplay =
-        document.getElementById("endDisplay");
+/* ================================
+   DOM
+================================ */
 
 
-    /* ================================
-       하루 = 밀리초
-    ================================= */
-
-    const DAY =
-        24 * 60 * 60 * 1000;
+const percentElement =
+    document.getElementById(
+        "percent"
+    );
 
 
-    /* ================================
-       날짜 생성
-    ================================= */
-
-    function getDateFromInput(value) {
-
-        return new Date(
-            value + "T00:00:00"
-        );
-
-    }
+const detailPercent =
+    document.getElementById(
+        "detailPercent"
+    );
 
 
-    /* ================================
-       날짜 표시
-    ================================= */
-
-    function formatDate(date) {
-
-        return date.toLocaleDateString(
-            "ko-KR",
-            {
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit"
-            }
-        );
-
-    }
+const progressElement =
+    document.getElementById(
+        "progress"
+    );
 
 
-    /* ================================
-       시간 표시
-    ================================= */
-
-    function formatTime(date) {
-
-        return date.toLocaleTimeString(
-            "ko-KR",
-            {
-                hour: "2-digit",
-                minute: "2-digit",
-                second: "2-digit"
-            }
-        );
-
-    }
+const totalDaysElement =
+    document.getElementById(
+        "totalDays"
+    );
 
 
-    /* ================================
-       메인 계산
-    ================================= */
-
-    function calculateService() {
-
-        const start =
-            getDateFromInput(
-                startDateInput.value
-            );
-
-        const end =
-            getDateFromInput(
-                endDateInput.value
-            );
+const elapsedDaysElement =
+    document.getElementById(
+        "elapsedDays"
+    );
 
 
-        const now =
-            new Date();
+const remainingDaysElement =
+    document.getElementById(
+        "remainingDays"
+    );
 
 
-        /*
-         * 잘못된 날짜
-         */
+const currentTimeElement =
+    document.getElementById(
+        "currentTime"
+    );
 
-        if (
-            isNaN(start.getTime()) ||
-            isNaN(end.getTime()) ||
-            end <= start
-        ) {
 
-            percentElement.textContent =
-                "날짜 오류";
+const startDisplay =
+    document.getElementById(
+        "startDisplay"
+    );
 
-            return;
 
+const endDisplay =
+    document.getElementById(
+        "endDisplay"
+    );
+
+
+/* ================================
+   고정 날짜
+================================ */
+
+
+/*
+ * 입대일
+ * 2026년 6월 23일 00:00:00
+ */
+
+const START_TIME =
+    new Date(
+        "2026-06-23T00:00:00"
+    ).getTime();
+
+
+/*
+ * 전역일
+ * 2027년 12월 22일 00:00:00
+ */
+
+const END_TIME =
+    new Date(
+        "2027-12-22T00:00:00"
+    ).getTime();
+
+
+/* ================================
+   상수
+================================ */
+
+
+const DAY =
+    24 * 60 * 60 * 1000;
+
+
+/*
+ * 100ms마다 업데이트
+ *
+ * 0.1초
+ */
+
+const UPDATE_INTERVAL = 100;
+
+
+/* ================================
+   날짜 표시
+================================ */
+
+
+function formatDate(date) {
+
+    return date.toLocaleDateString(
+        "ko-KR",
+        {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit"
         }
+    );
+
+}
 
 
-        /*
-         * 전체 복무시간
-         *
-         * 밀리초 단위
-         */
-
-        const totalMilliseconds =
-            end.getTime() -
-            start.getTime();
+/* ================================
+   시간 표시
+================================ */
 
 
-        /*
-         * 현재까지 복무한 시간
-         *
-         * 밀리초 단위
-         */
+function formatTime(date) {
 
-        let elapsedMilliseconds =
-            now.getTime() -
-            start.getTime();
-
-
-        /*
-         * 입대 전
-         */
-
-        if (
-            elapsedMilliseconds < 0
-        ) {
-
-            elapsedMilliseconds = 0;
-
+    return date.toLocaleTimeString(
+        "ko-KR",
+        {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
         }
+    );
+
+}
 
 
-        /*
-         * 전역 후
-         */
+/* ================================
+   메인 계산
+================================ */
 
-        if (
-            elapsedMilliseconds >
+
+function calculateService() {
+
+
+    const now =
+        Date.now();
+
+
+    /* ============================
+       전체 복무시간
+    ============================ */
+
+
+    const totalMilliseconds =
+        END_TIME -
+        START_TIME;
+
+
+    /* ============================
+       현재까지 복무한 시간
+    ============================ */
+
+
+    let elapsedMilliseconds =
+        now -
+        START_TIME;
+
+
+    /*
+     * 입대 전
+     */
+
+    if (
+        elapsedMilliseconds < 0
+    ) {
+
+        elapsedMilliseconds = 0;
+
+    }
+
+
+    /*
+     * 전역 후
+     */
+
+    if (
+        elapsedMilliseconds >
+        totalMilliseconds
+    ) {
+
+        elapsedMilliseconds =
+            totalMilliseconds;
+
+    }
+
+
+    /* ============================
+       남은 시간
+    ============================ */
+
+
+    const remainingMilliseconds =
+        totalMilliseconds -
+        elapsedMilliseconds;
+
+
+    /* ============================
+       복무율
+    ============================ */
+
+
+    let percent =
+        (
+            elapsedMilliseconds /
             totalMilliseconds
-        ) {
-
-            elapsedMilliseconds =
-                totalMilliseconds;
-
-        }
+        ) * 100;
 
 
-        /*
-         * 남은 시간
-         */
+    /*
+     * 0 ~ 100%
+     */
 
-        const remainingMilliseconds =
-            totalMilliseconds -
-            elapsedMilliseconds;
-
-
-        /*
-         * 복무율 계산
-         *
-         * 100을 곱해서 %
-         */
-
-        let percent =
-            (
-                elapsedMilliseconds /
-                totalMilliseconds
-            ) * 100;
-
-
-        /*
-         * 0 ~ 100 제한
-         */
-
-        percent =
-            Math.max(
-                0,
-                Math.min(
-                    100,
-                    percent
-                )
-            );
-
-
-        /* ================================
-           소수점 16자리
-        ================================= */
-
-        const percentText =
-            percent.toFixed(8) + "%";
-
-
-        percentElement.textContent =
-            percentText;
-
-        detailPercent.textContent =
-            percentText;
-
-
-        /* ================================
-           그래프
-        ================================= */
-
-        progressElement.style.width =
-            percent + "%";
-
-
-        /* ================================
-           일수
-        ================================= */
-
-        const totalDays =
-            totalMilliseconds / DAY;
-
-        const elapsedDays =
-            elapsedMilliseconds / DAY;
-
-        const remainingDays =
-            remainingMilliseconds / DAY;
-
-
-        totalDaysElement.textContent =
-            totalDays.toFixed(2) + "일";
-
-        elapsedDaysElement.textContent =
-            elapsedDays.toFixed(6) + "일";
-
-        remainingDaysElement.textContent =
-            remainingDays.toFixed(6) + "일";
-
-
-        elapsedText.textContent =
-            elapsedDays.toFixed(6) + "일 복무";
-
-        remainingText.textContent =
-            remainingDays.toFixed(6) + "일 남음";
-
-
-        /* ================================
-           현재 시간
-        ================================= */
-
-        currentTimeElement.textContent =
-            formatTime(now);
-
-
-        /* ================================
-           날짜
-        ================================= */
-
-        startDisplay.textContent =
-            formatDate(start);
-
-        endDisplay.textContent =
-            formatDate(end);
-
-    }
-
-
-    /* ================================
-       실시간 업데이트
-    ================================= */
-
-    function realtimeUpdate() {
-
-        calculateService();
-
-        requestAnimationFrame(
-            realtimeUpdate
+    percent =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                percent
+            )
         );
 
-    }
+
+    /*
+     * ⭐ 소수점 8자리
+     */
+
+    const percentText =
+        percent.toFixed(8) +
+        "%";
 
 
-    /* ================================
-       날짜 변경
-    ================================= */
-
-    startDateInput.addEventListener(
-        "change",
-        calculateService
-    );
-
-    endDateInput.addEventListener(
-        "change",
-        calculateService
-    );
+    /* ============================
+       복무율 표시
+    ============================ */
 
 
-    /* ================================
-       최초 실행
-    ================================= */
-
-    calculateService();
+    percentElement.textContent =
+        percentText;
 
 
-    /* ================================
-       실시간 시작
-    ================================= */
+    detailPercent.textContent =
+        percentText;
 
-    requestAnimationFrame(
-        realtimeUpdate
-    );
+
+    /* ============================
+       그래프
+    ============================ */
+
+
+    progressElement.style.width =
+        percent + "%";
+
+
+    /* ============================
+       복무일
+    ============================ */
+
+
+    const totalDays =
+        Math.round(
+            totalMilliseconds /
+            DAY
+        );
+
+
+    /*
+     * 입대한 뒤 완전히 지난 날짜
+     */
+
+    const elapsedDays =
+        Math.floor(
+            elapsedMilliseconds /
+            DAY
+        );
+
+
+    /*
+     * 남은 날짜
+     */
+
+    const remainingDays =
+        Math.ceil(
+            remainingMilliseconds /
+            DAY
+        );
+
+
+    /* ============================
+       정수로 표시
+    ============================ */
+
+
+    totalDaysElement.textContent =
+        totalDays + "일";
+
+
+    elapsedDaysElement.textContent =
+        elapsedDays + "일";
+
+
+    remainingDaysElement.textContent =
+        remainingDays + "일";
+
+
+    /* ============================
+       현재 시각
+    ============================ */
+
+
+    const nowDate =
+        new Date(now);
+
+
+    currentTimeElement.textContent =
+        formatTime(nowDate);
+
+
+    /* ============================
+       날짜 표시
+    ============================ */
+
+
+    const startDate =
+        new Date(START_TIME);
+
+
+    const endDate =
+        new Date(END_TIME);
+
+
+    startDisplay.textContent =
+        formatDate(startDate);
+
+
+    endDisplay.textContent =
+        formatDate(endDate);
+
+}
+
+
+/* ================================
+   최초 실행
+================================ */
+
+
+calculateService();
+
+
+/* ================================
+   실시간 업데이트
+================================ */
+
+
+/*
+ * 100ms마다 현재 시간을 다시 계산
+ *
+ * setInterval 자체의 지연은
+ * Date.now()를 기준으로 계산하기 때문에
+ * 누적되지 않는다.
+ */
+
+
+setInterval(
+    calculateService,
+    UPDATE_INTERVAL
+);
+
 
 </script>
 
+
 </body>
+
 </html>
