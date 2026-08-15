@@ -15,8 +15,17 @@
 
     <style>
 
+        /* ==================================================
+           RESET
+        ================================================== */
+
         * {
             box-sizing: border-box;
+        }
+
+
+        html {
+            -webkit-text-size-adjust: 100%;
         }
 
 
@@ -26,14 +35,9 @@
 
             min-height: 100vh;
 
-            padding: 32px 16px;
+            padding: 28px 16px;
 
-            background:
-                linear-gradient(
-                    180deg,
-                    #eef1f4 0%,
-                    #f7f7f8 100%
-                );
+            background: #f3f4f6;
 
             font-family:
                 -apple-system,
@@ -42,10 +46,16 @@
                 "Noto Sans KR",
                 sans-serif;
 
-            color: #202124;
+            color: #18181b;
+
+            -webkit-font-smoothing: antialiased;
 
         }
 
+
+        /* ==================================================
+           CONTAINER
+        ================================================== */
 
         .container {
 
@@ -58,54 +68,56 @@
         }
 
 
-        /* =========================
-           메인 카드
-        ========================= */
+        /* ==================================================
+           MAIN CARD
+        ================================================== */
 
         .card {
 
             overflow: hidden;
 
-            background: #fff;
+            background: #ffffff;
 
-            border: 1px solid #e8e8ea;
+            border: 1px solid #e5e7eb;
 
-            border-radius: 28px;
+            border-radius: 26px;
 
             box-shadow:
-                0 12px 45px
-                rgba(0, 0, 0, 0.07);
+                0 10px 35px rgba(0, 0, 0, 0.06);
 
         }
 
 
-        /* =========================
-           헤더
-        ========================= */
+        /* ==================================================
+           HEADER
+        ================================================== */
 
         .header {
 
-            padding: 30px 32px 26px;
+            padding: 28px 30px;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #171717,
-                    #303030
-                );
-
-            color: #fff;
+            border-bottom:
+                1px solid #eeeeef;
 
         }
 
 
-        .header-top {
+        .header-row {
 
             display: flex;
 
             align-items: center;
 
             justify-content: space-between;
+
+            gap: 20px;
+
+        }
+
+
+        .title-area {
+
+            min-width: 0;
 
         }
 
@@ -114,7 +126,7 @@
 
             margin: 0;
 
-            font-size: 25px;
+            font-size: 24px;
 
             font-weight: 850;
 
@@ -125,16 +137,20 @@
 
         .subtitle {
 
-            margin-top: 7px;
+            margin-top: 6px;
 
-            color: #bcbcbc;
+            color: #999999;
 
-            font-size: 13px;
+            font-size: 12px;
 
         }
 
 
-        .status {
+        /* ==================================================
+           LIVE
+        ================================================== */
+
+        .live {
 
             display: flex;
 
@@ -142,23 +158,24 @@
 
             gap: 7px;
 
-            padding: 8px 12px;
+            flex-shrink: 0;
+
+            padding: 7px 11px;
 
             border-radius: 999px;
 
-            background:
-                rgba(255,255,255,0.1);
+            background: #f3f4f6;
 
-            color: #ddd;
+            color: #777777;
 
-            font-size: 12px;
+            font-size: 11px;
 
             font-weight: 700;
 
         }
 
 
-        .status-dot {
+        .live-dot {
 
             width: 7px;
 
@@ -166,51 +183,51 @@
 
             border-radius: 50%;
 
-            background: #62d37c;
+            background: #45b96b;
 
             box-shadow:
-                0 0 10px
-                rgba(98,211,124,0.7);
+                0 0 0 3px
+                rgba(69, 185, 107, 0.12);
 
         }
 
 
-        /* =========================
-           콘텐츠
-        ========================= */
+        /* ==================================================
+           CONTENT
+        ================================================== */
 
         .content {
 
-            padding: 30px 32px 34px;
+            padding: 28px 30px 32px;
 
         }
 
 
-        /* =========================
-           날짜
-        ========================= */
+        /* ==================================================
+           DATE
+        ================================================== */
 
         .date-grid {
 
             display: grid;
 
             grid-template-columns:
-                1fr 1fr;
+                repeat(2, 1fr);
 
             gap: 12px;
 
         }
 
 
-        .date-box {
+        .date-card {
 
             padding: 16px 18px;
 
-            background: #f6f6f7;
+            border: 1px solid #ececee;
 
-            border: 1px solid #ededee;
+            border-radius: 16px;
 
-            border-radius: 17px;
+            background: #fafafa;
 
         }
 
@@ -219,11 +236,11 @@
 
             margin-bottom: 7px;
 
-            color: #8b8b8f;
+            color: #999999;
 
-            font-size: 12px;
+            font-size: 11px;
 
-            font-weight: 650;
+            font-weight: 700;
 
         }
 
@@ -236,31 +253,34 @@
 
             letter-spacing: -0.3px;
 
+            font-variant-numeric:
+                tabular-nums;
+
         }
 
 
-        /* =========================
-           복무율
-        ========================= */
+        /* ==================================================
+           PERCENT
+        ================================================== */
 
-        .percent-section {
+        .percent-area {
 
-            margin-top: 34px;
+            padding: 38px 0 25px;
 
             text-align: center;
 
         }
 
 
-        .percent-label {
+        .percent-caption {
 
             margin-bottom: 8px;
 
-            color: #999;
+            color: #999999;
 
-            font-size: 13px;
+            font-size: 12px;
 
-            font-weight: 650;
+            font-weight: 700;
 
         }
 
@@ -269,10 +289,12 @@
 
             font-size:
                 clamp(
-                    34px,
+                    36px,
                     8vw,
-                    55px
+                    56px
                 );
+
+            line-height: 1;
 
             font-weight: 900;
 
@@ -286,30 +308,30 @@
         }
 
 
-        /* =========================
-           진행률
-        ========================= */
+        /* ==================================================
+           PROGRESS
+        ================================================== */
 
-        .progress-section {
+        .progress-area {
 
-            margin-top: 25px;
+            margin-top: 2px;
 
         }
 
 
-        .progress-bar {
+        .progress-track {
 
             width: 100%;
 
-            height: 17px;
+            height: 14px;
 
-            padding: 3px;
+            padding: 2px;
 
             overflow: hidden;
 
             border-radius: 999px;
 
-            background: #e9e9eb;
+            background: #e9eaec;
 
         }
 
@@ -325,31 +347,33 @@
             background:
                 linear-gradient(
                     90deg,
-                    #151515,
-                    #6b6b6b
+                    #18181b,
+                    #55565a
                 );
 
         }
 
 
-        .progress-bottom {
+        .progress-label {
 
             display: flex;
 
             justify-content: space-between;
 
-            margin-top: 9px;
+            margin-top: 8px;
 
-            color: #999;
+            color: #aaaaaa;
 
-            font-size: 11px;
+            font-size: 10px;
+
+            font-weight: 600;
 
         }
 
 
-        /* =========================
-           통계
-        ========================= */
+        /* ==================================================
+           STATS
+        ================================================== */
 
         .stats {
 
@@ -360,35 +384,35 @@
 
             gap: 10px;
 
-            margin-top: 28px;
+            margin-top: 27px;
 
         }
 
 
         .stat {
 
-            padding: 18px 10px;
+            padding: 18px 10px 16px;
 
             text-align: center;
 
-            background: #f7f7f8;
+            background: #f8f8f9;
 
             border: 1px solid #ededee;
 
-            border-radius: 17px;
+            border-radius: 16px;
 
         }
 
 
         .stat-label {
 
-            margin-bottom: 7px;
+            margin-bottom: 8px;
 
-            color: #999;
+            color: #999999;
 
-            font-size: 11px;
+            font-size: 10px;
 
-            font-weight: 650;
+            font-weight: 700;
 
         }
 
@@ -399,32 +423,63 @@
 
             font-weight: 850;
 
+            letter-spacing: -0.5px;
+
             font-variant-numeric:
                 tabular-nums;
 
         }
 
 
-        /* =========================
-           섹션 제목
-        ========================= */
+        /* ==================================================
+           SECTION
+        ================================================== */
+
+        .section {
+
+            margin-top: 32px;
+
+        }
+
+
+        .section-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 12px;
+
+        }
+
 
         .section-title {
 
-            margin-top: 34px;
-
-            margin-bottom: 14px;
+            margin: 0;
 
             font-size: 15px;
 
             font-weight: 850;
 
+            letter-spacing: -0.3px;
+
         }
 
 
-        /* =========================
-           진급 일정
-        ========================= */
+        .section-subtitle {
+
+            color: #aaaaaa;
+
+            font-size: 10px;
+
+        }
+
+
+        /* ==================================================
+           PROMOTION LIST
+        ================================================== */
 
         .promotion-list {
 
@@ -432,7 +487,7 @@
 
             flex-direction: column;
 
-            gap: 8px;
+            gap: 7px;
 
         }
 
@@ -445,34 +500,76 @@
 
             gap: 13px;
 
-            padding: 13px 15px;
+            min-height: 66px;
 
-            border-radius: 14px;
+            padding: 10px 14px;
 
-            background: #f7f7f8;
+            border: 1px solid #eeeeef;
 
-            border: 1px solid transparent;
+            border-radius: 15px;
+
+            background: #fafafa;
+
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease,
+                opacity 0.2s ease;
 
         }
 
+
+        /* ==================================================
+           CURRENT RANK
+           
+           검정색 세로선 없음
+           배경과 계급장만 은은하게 강조
+        ================================================== */
 
         .promotion.current {
 
-            background: #ededee;
+            border-color: #d8d8da;
 
-            border-color: #dcdcdf;
+            background: #f3f3f4;
 
         }
 
+
+        .promotion.current .rank-insignia {
+
+            background: #171717;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(0, 0, 0, 0.055);
+
+        }
+
+
+        .promotion.current .promotion-state {
+
+            color: #222222;
+
+            font-weight: 800;
+
+        }
+
+
+        /* ==================================================
+           COMPLETED RANK
+        ================================================== */
 
         .promotion.completed {
 
-            opacity: 0.45;
+            opacity: 0.42;
 
         }
 
 
-        .rank-dot {
+        /* ==================================================
+           RANK INSIGNIA
+        ================================================== */
+
+        .rank-insignia {
 
             display: flex;
 
@@ -482,26 +579,83 @@
 
             flex-shrink: 0;
 
-            width: 30px;
+            width: 43px;
 
-            height: 30px;
+            height: 43px;
 
-            border-radius: 50%;
+            border-radius: 11px;
 
-            background: #222;
-
-            color: #fff;
-
-            font-size: 10px;
-
-            font-weight: 800;
+            background: #222225;
 
         }
 
 
+        /* ==================================================
+           TRAINING SOLDIER
+           
+           이미지 없이 간단한 원형
+        ================================================== */
+
+        .training-mark {
+
+            width: 9px;
+
+            height: 9px;
+
+            border: 2px solid #ffffff;
+
+            border-radius: 50%;
+
+            opacity: 0.9;
+
+        }
+
+
+        /* ==================================================
+           RANK BARS
+           
+           가로 방향 막대
+        ================================================== */
+
+        .rank-bars {
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 3px;
+
+        }
+
+
+        .rank-bars span {
+
+            display: block;
+
+            width: 27px;
+
+            height: 4px;
+
+            border-radius: 3px;
+
+            background: #ffffff;
+
+        }
+
+
+        /* ==================================================
+           PROMOTION INFO
+        ================================================== */
+
         .promotion-info {
 
             flex: 1;
+
+            min-width: 0;
 
         }
 
@@ -517,45 +671,47 @@
 
         .promotion-date {
 
-            margin-top: 2px;
+            margin-top: 4px;
 
-            color: #999;
+            color: #999999;
 
-            font-size: 11px;
+            font-size: 10px;
+
+            font-variant-numeric:
+                tabular-nums;
 
         }
 
 
         .promotion-state {
 
-            color: #999;
+            flex-shrink: 0;
 
-            font-size: 11px;
+            min-width: 30px;
 
-            font-weight: 700;
+            text-align: right;
 
-        }
+            color: #aaaaaa;
 
+            font-size: 10px;
 
-        .promotion.current
-        .promotion-state {
-
-            color: #222;
+            font-weight: 750;
 
         }
 
 
-        /* =========================
-           상세 정보
-        ========================= */
+        /* ==================================================
+           DETAIL
+        ================================================== */
 
         .detail {
 
             margin-top: 28px;
 
-            padding-top: 22px;
+            padding-top: 20px;
 
-            border-top: 1px solid #eee;
+            border-top:
+                1px solid #eeeeef;
 
         }
 
@@ -564,20 +720,22 @@
 
             display: flex;
 
+            align-items: center;
+
             justify-content: space-between;
 
             gap: 20px;
 
-            padding: 8px 0;
+            padding: 7px 0;
 
-            font-size: 13px;
+            font-size: 12px;
 
         }
 
 
         .detail-row span:first-child {
 
-            color: #999;
+            color: #999999;
 
         }
 
@@ -594,41 +752,75 @@
         }
 
 
-        /* =========================
-           모바일
-        ========================= */
+        /* ==================================================
+           FOOTER
+        ================================================== */
+
+        .footer {
+
+            margin-top: 22px;
+
+            text-align: center;
+
+            color: #b5b5b7;
+
+            font-size: 9px;
+
+        }
+
+
+        /* ==================================================
+           MOBILE
+        ================================================== */
 
         @media (max-width: 600px) {
 
             body {
 
-                padding: 16px 10px;
+                padding:
+                    12px 9px;
+
+            }
+
+
+            .card {
+
+                border-radius: 21px;
 
             }
 
 
             .header {
 
-                padding: 24px 20px;
+                padding:
+                    23px 20px;
 
             }
 
 
             .content {
 
-                padding: 22px 18px 26px;
+                padding:
+                    22px 18px 27px;
 
             }
 
 
             .title {
 
-                font-size: 22px;
+                font-size: 21px;
 
             }
 
 
-            .status {
+            .subtitle {
+
+                font-size: 11px;
+
+            }
+
+
+            .live {
 
                 display: none;
 
@@ -637,7 +829,28 @@
 
             .date-grid {
 
-                grid-template-columns: 1fr;
+                gap: 8px;
+
+            }
+
+
+            .date-card {
+
+                padding: 14px;
+
+            }
+
+
+            .date-value {
+
+                font-size: 14px;
+
+            }
+
+
+            .percent-area {
+
+                padding-top: 32px;
 
             }
 
@@ -651,21 +864,66 @@
 
             .stat {
 
-                padding: 16px 6px;
+                padding:
+                    15px 5px;
 
             }
 
 
             .stat-value {
 
-                font-size: 18px;
+                font-size: 17px;
 
             }
 
 
-            .percent {
+            .promotion {
 
-                letter-spacing: -1.8px;
+                min-height: 62px;
+
+                padding:
+                    9px 11px;
+
+                gap: 10px;
+
+            }
+
+
+            .rank-insignia {
+
+                width: 39px;
+
+                height: 39px;
+
+            }
+
+
+            .rank-bars {
+
+                gap: 3px;
+
+            }
+
+
+            .rank-bars span {
+
+                width: 24px;
+
+                height: 3px;
+
+            }
+
+
+            .promotion-name {
+
+                font-size: 13px;
+
+            }
+
+
+            .promotion-date {
+
+                font-size: 9px;
 
             }
 
@@ -685,15 +943,15 @@
     <div class="card">
 
 
-        <!-- =========================
+        <!-- ==================================================
              HEADER
-        ========================= -->
+        ================================================== -->
 
         <header class="header">
 
-            <div class="header-top">
+            <div class="header-row">
 
-                <div>
+                <div class="title-area">
 
                     <h1 class="title">
                         군돌이 짭
@@ -706,9 +964,9 @@
                 </div>
 
 
-                <div class="status">
+                <div class="live">
 
-                    <span class="status-dot"></span>
+                    <span class="live-dot"></span>
 
                     실시간
 
@@ -722,14 +980,14 @@
         <main class="content">
 
 
-            <!-- =========================
-                 날짜
-            ========================= -->
+            <!-- ==================================================
+                 DATE
+            ================================================== -->
 
             <div class="date-grid">
 
 
-                <div class="date-box">
+                <div class="date-card">
 
                     <div class="date-label">
                         입대일
@@ -742,7 +1000,7 @@
                 </div>
 
 
-                <div class="date-box">
+                <div class="date-card">
 
                     <div class="date-label">
                         전역일
@@ -758,13 +1016,13 @@
             </div>
 
 
-            <!-- =========================
-                 복무율
-            ========================= -->
+            <!-- ==================================================
+                 PERCENT
+            ================================================== -->
 
-            <section class="percent-section">
+            <section class="percent-area">
 
-                <div class="percent-label">
+                <div class="percent-caption">
                     현재 복무율
                 </div>
 
@@ -778,13 +1036,13 @@
             </section>
 
 
-            <!-- =========================
-                 진행률
-            ========================= -->
+            <!-- ==================================================
+                 PROGRESS
+            ================================================== -->
 
-            <section class="progress-section">
+            <section class="progress-area">
 
-                <div class="progress-bar">
+                <div class="progress-track">
 
                     <div
                         class="progress"
@@ -794,14 +1052,14 @@
                 </div>
 
 
-                <div class="progress-bottom">
+                <div class="progress-label">
 
                     <span>
-                        입대
+                        2026. 06. 23.
                     </span>
 
                     <span>
-                        전역
+                        2027. 12. 22.
                     </span>
 
                 </div>
@@ -809,9 +1067,9 @@
             </section>
 
 
-            <!-- =========================
-                 통계
-            ========================= -->
+            <!-- ==================================================
+                 STATS
+            ================================================== -->
 
             <div class="stats">
 
@@ -826,7 +1084,7 @@
                         class="stat-value"
                         id="totalDays"
                     >
-                        0일
+                        547일
                     </div>
 
                 </div>
@@ -858,7 +1116,7 @@
                         class="stat-value"
                         id="remainingDays"
                     >
-                        0일
+                        547일
                     </div>
 
                 </div>
@@ -867,169 +1125,244 @@
             </div>
 
 
-            <!-- =========================
-                 진급 일정
-            ========================= -->
+            <!-- ==================================================
+                 PROMOTION
+            ================================================== -->
 
-            <div class="section-title">
-                진급 일정
-            </div>
+            <section class="section">
 
 
-            <div class="promotion-list">
+                <div class="section-header">
 
+                    <h2 class="section-title">
+                        진급 일정
+                    </h2>
 
-                <div
-                    class="promotion"
-                    data-start="2026-06-23"
-                    data-end="2026-07-29"
-                >
-
-                    <div class="rank-dot">
-                        훈
-                    </div>
-
-                    <div class="promotion-info">
-
-                        <div class="promotion-name">
-                            훈련병
-                        </div>
-
-                        <div class="promotion-date">
-                            2026. 06. 23. ~ 2026. 07. 28.
-                        </div>
-
-                    </div>
-
-                    <div class="promotion-state">
-                        예정
-                    </div>
+                    <span class="section-subtitle">
+                        계급별 복무 기간
+                    </span>
 
                 </div>
 
 
-                <div
-                    class="promotion"
-                    data-start="2026-07-29"
-                    data-end="2026-09-01"
-                >
+                <div class="promotion-list">
 
-                    <div class="rank-dot">
-                        이
-                    </div>
 
-                    <div class="promotion-info">
+                    <!-- ==================================================
+                         훈련병
+                    ================================================== -->
 
-                        <div class="promotion-name">
-                            이병
+                    <div
+                        class="promotion"
+                        data-start="2026-06-23"
+                        data-end="2026-07-29"
+                    >
+
+                        <div class="rank-insignia">
+
+                            <div class="training-mark"></div>
+
                         </div>
 
-                        <div class="promotion-date">
-                            2026. 07. 29. ~ 2026. 08. 31.
+
+                        <div class="promotion-info">
+
+                            <div class="promotion-name">
+                                훈련병
+                            </div>
+
+                            <div class="promotion-date">
+                                2026. 06. 23. ~ 2026. 07. 28.
+                            </div>
+
+                        </div>
+
+
+                        <div class="promotion-state">
+                            예정
                         </div>
 
                     </div>
 
-                    <div class="promotion-state">
-                        예정
+
+                    <!-- ==================================================
+                         이병
+                    ================================================== -->
+
+                    <div
+                        class="promotion"
+                        data-start="2026-07-29"
+                        data-end="2026-09-01"
+                    >
+
+                        <div class="rank-insignia">
+
+                            <div class="rank-bars">
+
+                                <span></span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="promotion-info">
+
+                            <div class="promotion-name">
+                                이병
+                            </div>
+
+                            <div class="promotion-date">
+                                2026. 07. 29. ~ 2026. 08. 31.
+                            </div>
+
+                        </div>
+
+
+                        <div class="promotion-state">
+                            예정
+                        </div>
+
                     </div>
+
+
+                    <!-- ==================================================
+                         일병
+                    ================================================== -->
+
+                    <div
+                        class="promotion"
+                        data-start="2026-09-01"
+                        data-end="2027-03-01"
+                    >
+
+                        <div class="rank-insignia">
+
+                            <div class="rank-bars">
+
+                                <span></span>
+                                <span></span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="promotion-info">
+
+                            <div class="promotion-name">
+                                일병
+                            </div>
+
+                            <div class="promotion-date">
+                                2026. 09. 01. ~ 2027. 02. 28.
+                            </div>
+
+                        </div>
+
+
+                        <div class="promotion-state">
+                            예정
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==================================================
+                         상병
+                    ================================================== -->
+
+                    <div
+                        class="promotion"
+                        data-start="2027-03-01"
+                        data-end="2027-09-01"
+                    >
+
+                        <div class="rank-insignia">
+
+                            <div class="rank-bars">
+
+                                <span></span>
+                                <span></span>
+                                <span></span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="promotion-info">
+
+                            <div class="promotion-name">
+                                상병
+                            </div>
+
+                            <div class="promotion-date">
+                                2027. 03. 01. ~ 2027. 08. 31.
+                            </div>
+
+                        </div>
+
+
+                        <div class="promotion-state">
+                            예정
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==================================================
+                         병장
+                    ================================================== -->
+
+                    <div
+                        class="promotion"
+                        data-start="2027-09-01"
+                        data-end="2027-12-23"
+                    >
+
+                        <div class="rank-insignia">
+
+                            <div class="rank-bars">
+
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="promotion-info">
+
+                            <div class="promotion-name">
+                                병장
+                            </div>
+
+                            <div class="promotion-date">
+                                2027. 09. 01. ~ 2027. 12. 22.
+                            </div>
+
+                        </div>
+
+
+                        <div class="promotion-state">
+                            예정
+                        </div>
+
+                    </div>
+
 
                 </div>
 
-
-                <div
-                    class="promotion"
-                    data-start="2026-09-01"
-                    data-end="2027-03-01"
-                >
-
-                    <div class="rank-dot">
-                        일
-                    </div>
-
-                    <div class="promotion-info">
-
-                        <div class="promotion-name">
-                            일병
-                        </div>
-
-                        <div class="promotion-date">
-                            2026. 09. 01. ~ 2027. 02. 28.
-                        </div>
-
-                    </div>
-
-                    <div class="promotion-state">
-                        예정
-                    </div>
-
-                </div>
+            </section>
 
 
-                <div
-                    class="promotion"
-                    data-start="2027-03-01"
-                    data-end="2027-09-01"
-                >
-
-                    <div class="rank-dot">
-                        상
-                    </div>
-
-                    <div class="promotion-info">
-
-                        <div class="promotion-name">
-                            상병
-                        </div>
-
-                        <div class="promotion-date">
-                            2027. 03. 01. ~ 2027. 08. 31.
-                        </div>
-
-                    </div>
-
-                    <div class="promotion-state">
-                        예정
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="promotion"
-                    data-start="2027-09-01"
-                    data-end="2027-12-23"
-                >
-
-                    <div class="rank-dot">
-                        병
-                    </div>
-
-                    <div class="promotion-info">
-
-                        <div class="promotion-name">
-                            병장
-                        </div>
-
-                        <div class="promotion-date">
-                            2027. 09. 01. ~ 2027. 12. 22.
-                        </div>
-
-                    </div>
-
-                    <div class="promotion-state">
-                        예정
-                    </div>
-
-                </div>
-
-
-            </div>
-
-
-            <!-- =========================
-                 상세 정보
-            ========================= -->
+            <!-- ==================================================
+                 DETAIL
+            ================================================== -->
 
             <div class="detail">
 
@@ -1089,6 +1422,11 @@
             </div>
 
 
+            <div class="footer">
+                군돌이 짭 · 실시간 복무율 계산
+            </div>
+
+
         </main>
 
     </div>
@@ -1099,10 +1437,9 @@
 <script>
 
 
-/* ================================
+/* ==================================================
    복무 기간
-================================ */
-
+================================================== */
 
 const START_TIME =
     new Date(
@@ -1121,16 +1458,15 @@ const DAY =
 
 
 /*
- * 0.1초마다 화면 업데이트
+ * 0.1초마다 업데이트
  */
 
 const UPDATE_INTERVAL = 100;
 
 
-/* ================================
+/* ==================================================
    DOM
-================================ */
-
+================================================== */
 
 const percentElement =
     document.getElementById(
@@ -1180,29 +1516,9 @@ const promotionElements =
     );
 
 
-/* ================================
-   날짜 포맷
-================================ */
-
-
-function formatDate(date) {
-
-    return date.toLocaleDateString(
-        "ko-KR",
-        {
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit"
-        }
-    );
-
-}
-
-
-/* ================================
-   시간 포맷
-================================ */
-
+/* ==================================================
+   시간 표시
+================================================== */
 
 function formatTime(date) {
 
@@ -1219,10 +1535,9 @@ function formatTime(date) {
 }
 
 
-/* ================================
+/* ==================================================
    진급 상태
-================================ */
-
+================================================== */
 
 function updatePromotion(now) {
 
@@ -1255,9 +1570,7 @@ function updatePromotion(now) {
             );
 
 
-            /*
-             * 현재 계급
-             */
+            /* 현재 */
 
             if (
                 now >= start &&
@@ -1274,9 +1587,7 @@ function updatePromotion(now) {
             }
 
 
-            /*
-             * 지나간 계급
-             */
+            /* 완료 */
 
             else if (
                 now >= end
@@ -1292,9 +1603,7 @@ function updatePromotion(now) {
             }
 
 
-            /*
-             * 아직 오지 않은 계급
-             */
+            /* 예정 */
 
             else {
 
@@ -1309,30 +1618,24 @@ function updatePromotion(now) {
 }
 
 
-/* ================================
-   메인 계산
-================================ */
-
+/* ==================================================
+   복무 계산
+================================================== */
 
 function calculateService() {
-
 
     const now =
         Date.now();
 
 
-    /*
-     * 전체 복무시간
-     */
+    /* 전체 복무시간 */
 
     const totalMilliseconds =
         END_TIME -
         START_TIME;
 
 
-    /*
-     * 현재까지 복무한 시간
-     */
+    /* 현재까지 복무시간 */
 
     let elapsedMilliseconds =
         now -
@@ -1367,19 +1670,16 @@ function calculateService() {
     }
 
 
-    /*
-     * 남은 시간
-     */
+    /* 남은 시간 */
 
     const remainingMilliseconds =
         totalMilliseconds -
         elapsedMilliseconds;
 
 
-    /* ============================
+    /* ==================================================
        복무율
-    ============================ */
-
+    ================================================== */
 
     let percent =
         (
@@ -1415,19 +1715,21 @@ function calculateService() {
         percentText;
 
 
-    /* ============================
-       그래프
-    ============================ */
-
+    /* ==================================================
+       진행 그래프
+    ================================================== */
 
     progressElement.style.width =
         percent + "%";
 
 
-    /* ============================
-       날짜 계산
-    ============================ */
-
+    /* ==================================================
+       일수
+       
+       총 복무일 : 547일
+       복무한 날 : 지난 완전한 날짜
+       남은 날   : 남은 날짜 올림
+    ================================================== */
 
     const totalDays =
         Math.round(
@@ -1450,27 +1752,24 @@ function calculateService() {
         );
 
 
-    /* ============================
-       통계 표시
-    ============================ */
-
-
     totalDaysElement.textContent =
-        totalDays + "일";
+        totalDays +
+        "일";
 
 
     elapsedDaysElement.textContent =
-        elapsedDays + "일";
+        elapsedDays +
+        "일";
 
 
     remainingDaysElement.textContent =
-        remainingDays + "일";
+        remainingDays +
+        "일";
 
 
-    /* ============================
+    /* ==================================================
        현재 시각
-    ============================ */
-
+    ================================================== */
 
     currentTimeElement.textContent =
         formatTime(
@@ -1478,28 +1777,25 @@ function calculateService() {
         );
 
 
-    /* ============================
+    /* ==================================================
        진급 일정
-    ============================ */
-
+    ================================================== */
 
     updatePromotion(now);
 
 }
 
 
-/* ================================
-   초기 실행
-================================ */
-
+/* ==================================================
+   최초 실행
+================================================== */
 
 calculateService();
 
 
-/* ================================
+/* ==================================================
    실시간 업데이트
-================================ */
-
+================================================== */
 
 setInterval(
     calculateService,
